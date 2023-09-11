@@ -1,0 +1,80 @@
+﻿
+<div class="pagecontainer">
+    <div class="searchbox">
+        <h1>Search City</h1>
+        <input type="search" id="search" class="searchcontainer" aria-label="Search for a place on the map" inputmode="search" placeholder="Search city" />
+    <div>
+        <div class="Searchbuttons">
+
+        <input type="radio" id="ShowAll" name="selection" value="Show All" checked onclick="DoSearch()"/>
+        <label for="ShowAll">Show All</label>
+
+        <input type="radio" id="Restaurants" name="selection" value="Restaurants" onclick="DoSearch()"/>
+        <label for="Restaurants">Restaurants</label>
+
+        <input type="radio" id="Activities" name="selection" value="Activities" onclick="DoSearch()"/>
+        <label for="Activities">Activities</label>
+
+        </div>
+        </div>
+    </div>
+<div class="Logo" id="Logo"><img class="Mainlogostyle" src="~/Image/LogoNo3.png"/></div>
+<div id="searchResult"></div>
+</div>
+
+<script>
+
+    let search = document.getElementById("search");
+    let searchResult = document.getElementById("searchResult");
+
+    let ShowAll = document.getElementById("ShowAll");
+    let Restaurants = document.getElementById("Restaurants");
+    let Activities = document.getElementById("Activities");
+
+
+
+    search.addEventListener("input", async (event) => {
+
+        await DoSearch();
+
+    });
+
+    async function DoSearch() {
+        var searchString = search.value;
+        var featchString;
+        if (search.value !== "") 
+        { 
+            Logo.innerHTML = null;
+        }
+        if (search.value === ""){
+            let result = await fetch("/logo",
+                 {
+                     method: "GET",
+                 });
+
+            let html = await result.text();
+            Logo.innerHTML = html;
+        }
+
+        if (ShowAll.checked)
+        {
+            fetchString = "GetAll/" 
+        }
+
+        if (Restaurants.checked) {
+            fetchString = "GetRestaurants/"
+        }
+
+        if (Activities.checked) {
+            fetchString = "GetActivities/"
+        }
+
+        let result = await fetch(fetchString + searchString,
+        {
+         method: "GET",
+        });
+
+        let html = await result.text();
+        searchResult.innerHTML = html;
+    }
+</script>

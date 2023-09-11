@@ -1,0 +1,50 @@
+﻿@model MytripVM
+<div class="mytrip">
+	<h1><b>My Trip</b></h1>
+	
+	@foreach (var cityGroup in Model.CityGroups)
+	{
+		<div class="mytripinnerbox">
+			<h2><i>@cityGroup.Key</i></h2>
+
+				@if (cityGroup.Value.Restaurants.Length > 0)
+				{
+					<h3><i>Restaurants:</i></h3>
+					<ul>
+						@foreach (var restaurant in cityGroup.Value.Restaurants)
+						{
+							
+							<form asp-controller="Travels" asp-action="RemoveTrip" asp-route-id="@restaurant.Id">
+							<a asp-controller="Travels" asp-action="GetDetails" asp-route-id="@restaurant.Id">
+						<li>
+						@restaurant.Name
+							</a>
+						<li style="list-style-type:none">
+							&#128198; @restaurant.BookedDate?.ToString(@"yyyy\-MM\-dd") @restaurant.BookedTime?.ToString(@"hh\:mm") <button type="submit"><img src="/Image/bin.png" /></button>
+						</li>
+					
+							</form>
+						}
+					</ul>
+				}
+			
+				@if (cityGroup.Value.Activities.Length > 0)
+				{
+					<h3><i>Activities:</i></h3>
+					<ul>
+						@foreach (var activity in cityGroup.Value.Activities)
+						{
+							<form asp-controller="Travels" asp-action="RemoveTrip" asp-route-id="@activity.Id">
+								<a asp-controller="Travels" asp-action="GetDetails" asp-route-id="@activity.Id">
+						<li>@activity.Name</a>
+						<li style="list-style-type:none">
+							&#128198;@activity.BookedDate?.ToString(@"yyyy\-mm\-dd") @activity.BookedTime?.ToString(@"hh\:mm") <button type="submit"><img src="/Image/bin.png" /></button>
+						</li>			
+							</form>
+						}
+					</ul>
+				}
+			</div>
+
+	}
+</div>

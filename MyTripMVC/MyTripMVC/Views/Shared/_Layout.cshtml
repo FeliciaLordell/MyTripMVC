@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <title>MyTrip</title>
+</head>
+<body>
+    <nav>
+        <div class="nav">
+            <a asp-controller="Travels" asp-action="Index"><img class="logostyle" src="~/Image/LogoNo3.png" width="100" /></a>
+            <div class="navstyle">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="Travels" asp-action="Index">Search</a>
+                <a asp-controller="Travels" asp-action="Mytrip">My Trip</a>
+                <a asp-controller="Travels" asp-action="Logout">Sign out</a>
+            }
+            else
+            {
+                <a asp-controller="Travels" asp-action="Index">Search</a>
+                <a asp-controller="Travels" asp-action="Register">Sign Up</a>
+                <a asp-controller="Travels" asp-action="Login">Log In</a>
+            }
+            </div>
+        </div>
+    </nav>
+    <div>
+        
+        @RenderBody()
+    </div>
+    <footer class="footer">
+        <h4>&copy; 2023 MyTrip </h4>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,26 @@
+﻿@model LoginVM
+<div class="form-outline mb-4 loginbox" >
+    <h3>Log In</h3>
+
+<form asp-controller="Travels" asp-action="Login">
+<div class="logincontent">
+    <label asp-for="UserName"></label>
+    <input asp-for="UserName" />
+    <span asp-validation-for="UserName"></span>
+
+
+    <label asp-for="Password"></label>
+    <input asp-for="Password"/>
+    <span asp-validation-for="Password"></span>
+    </div>
+    <br />
+    <div class="signin">
+            <input type="submit" value="Sign In" class="button-29" />
+           
+    </div>
+</form>
+
+    <p> If you don´t have an account yet, sign up  <a asp-controller="Travels" asp-action="Register"> here</a></p>
+    <div asp-validation-summary="All"></div>
+
+</div>

@@ -1,0 +1,45 @@
+﻿@model RegisterVM
+
+<div class="form-outline mb-4 loginbox">
+	<h3>Register</h3>
+	<form asp-controller="Travels" asp-action="Register">
+		<div class="logincontent">
+			<div class="namebox">
+				<div class="names">
+					<label asp-for="FirstName"></label>
+					<input asp-for="FirstName" />
+					<span asp-validation-for="FirstName"></span>
+				</div>
+				<div class="names">
+					<label asp-for="LastName"></label>
+					<input asp-for="LastName" />
+					<span asp-validation-for="LastName"></span>
+				</div>
+			</div>
+
+			<label asp-for="UserName"></label>
+			<input asp-for="UserName" />
+			<span asp-validation-for="UserName"></span>
+
+			<label asp-for="Email"></label>
+			<input asp-for="Email" />
+			<span asp-validation-for="Email"></span>
+
+			<label asp-for="Password"></label>
+			<input asp-for="Password" />
+			<span asp-validation-for="Password"></span>
+
+			<label asp-for="PasswordRepeat"></label>
+			<input asp-for="PasswordRepeat" />
+			<span asp-validation-for="PasswordRepeat"></span>
+		</div>
+
+		<br />
+		<div class="signin">
+			<input type="submit" value="Register" class="button-29" />
+		</div>
+	</form>
+	<p> Already a member? Log into your account <a asp-controller="Travels" asp-action="Login">here</a></p>
+
+	<div asp-validation-summary="All"></div>
+</div>
